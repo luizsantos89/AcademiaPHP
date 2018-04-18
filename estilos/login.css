@@ -14,6 +14,10 @@ body{
     font-size: 13px;
     text-align: center;
     background: #F7BE81;
+    background-image: url("../imagens/logo2.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom right;
 }
 
 .container-login{

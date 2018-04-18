@@ -14,11 +14,11 @@
                 <br><br>
                 
                 <label>
-                    <input type="text" name="login" placeholder="Entre com seu login" size="35px">
+                    <input type="text" name="login" placeholder="Entre com seu login" size="27">
                 </label>
 
                 <label>
-                    <input type="password" name="senha" placeholder="Entre com sua senha" size="35px">
+                    <input type="password" name="senha" placeholder="Entre com sua senha" size="27">
                 </label>
                 
                 <button type="submit">Acessar o sistema</button>
