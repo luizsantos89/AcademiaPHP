@@ -1,4 +1,10 @@
+<?php
+session_start();
+if(isset($_SESSION["usuario"])) {
+    Header("location:index.php");
+} 
 
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -61,17 +67,29 @@
               border-top-left-radius: 0;
               border-top-right-radius: 0;
             }
+            span {
+                color: red;
+                font-family: "Times New Roman";
+                font-size: smaller;
+            }
         </style>
     </head>
 
     <body class="text-center">
         <form class="form-signin" action="controler/processaLogin.php" method="post">
-            <img class="mb-4" src="imagens/logo2.png" alt="">
+            <img class="mb-4" src="imagens/logo2.png" alt=""><br><br>
+            <?php
+                if(isset($_GET["erro"])){
+                    if($_GET["erro"]==1){
+                        echo '<span class="error">Login/Senha incorretos</span><br><br>';
+                    }
+                }
+            ?>            
             <label class="sr-only">Login:</label>
             <input type="text" name="login" class="form-control" placeholder="Login" required autofocus>
             <label class="sr-only">Senha:</label>
             <input type="password" name="senha" class="form-control" placeholder="Senha" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
             <p class="mt-5 mb-3 text-muted">&copy; Luiz Santos 2018</p>
         </form>
     </body>

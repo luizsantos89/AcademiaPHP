@@ -19,8 +19,13 @@
 
             $funcionario = new Funcionario();
             $funcionario = $sql->fetch(PDO::FETCH_OBJ);
-            $_SESSION["usuario"] = $funcionario;
-            Header("Location: ../index.php");
+            
+            if ($funcionario->nome != "") {
+                $_SESSION["usuario"] = $funcionario;
+                Header("Location: ../index.php");
+            } else {
+                Header("Location: ../login.php?erro=1");
+            }
         }
 
         /*/*Retorna toda a tabela usuário
