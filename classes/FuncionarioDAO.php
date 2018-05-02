@@ -1,5 +1,6 @@
 <?php
     require('../includes/conexao.inc');
+    require('Funcionario.php');
 
     class FuncionarioDAO{   
 
@@ -24,5 +25,27 @@
             $sql.execute();
             
             return $sql->fetch(PDO::FETCH_OBJ);
+        }
+        
+        public function getFuncionarios() {
+            $query = "SELECT * FROM funcionario";
+            $rs = $this->con->query($query);
+
+            $lista = array();
+        
+            $funcionario = new Funcionario();
+            
+            while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
+                $funcionario->setIdFuncionario($row->idFuncionario);
+                $funcionario->setNome($row->nome);
+                $funcionario->setEmail($row->email);
+                $funcionario->setUsuario($row->usuario);
+                $funcionario->setCpf($row->cpf);
+                $funcionario->setDataAdmissao($row->dataAdmissao);
+                $funcionario->setDataDemissao($row->dataDemissao);
+                $lista[] = $funcionario;
+            }
+
+            return $lista;
         }
     }

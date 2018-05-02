@@ -93,7 +93,7 @@
       <footer class="pt-4 my-md-5 pt-md-5 border-top">
         <div class="row">
             
-            <small class="d-block mb-3 text-muted">Desenvolvimento por <a href="mailto:luiz.santos89@yahoo.com.br">Luiz Santos</a> - Seminário III - Bach. em Sistemas de Informação - CES/JF </small>          
+            <small class="d-block mb-3 text-muted">Desenvolvimento por <a href="mailto:luiz.santos89@yahoo.com.br">Luiz Santos</a> - Seminário III - Bacharelado em Sistemas de Informação - Centro de Ensino Superior de Juiz de Fora - CES/JF </small>          
         </div>
       </footer>
     </div>
