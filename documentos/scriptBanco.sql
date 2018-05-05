@@ -10,7 +10,7 @@ USE academia;
 -- Table academia.funcionario
 -- -----------------------------------------------------
 CREATE TABLE funcionario (
-  idFuncionario INT NOT NULL,
+  idFuncionario INT AUTO_INCREMENT,
   nome VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL,
   usuario VARCHAR(45) NOT NULL,
@@ -164,4 +164,5 @@ CREATE TABLE avaliacaoFisica (
 ENGINE = InnoDB;
 
 
-INSERT INTO funcionario(idFuncionario,nome,email,usuario,senha,cpf) VALUES(1,'Luiz Claudio Afonso dos Santos','luiz.santos89@yahoo.com.br','luizsantos89','lcaslcas','09695742661');
+INSERT INTO funcionario(nome,email,usuario,senha,cpf,dataAdmissao) VALUES('Evaldo Oliveira','evaldoliveira@gmail.com','eoliveira',md5('123456'),'012.345.678-90',NOW());
+INSERT INTO funcionario(nome,email,usuario,senha,cpf,dataAdmissao) VALUES('Luiz Santos','luiz.santos89@yahoo.com.br','luizsantos89',md5('lcaslcas'),'09695742661', NOW());

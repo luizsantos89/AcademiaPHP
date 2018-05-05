@@ -3,6 +3,12 @@
     require('Funcionario.php');
 
     class FuncionarioDAO{   
+        private $con;
+
+        function FuncionarioDAO(){
+                $c = new Conexao();
+                $this->con = $c->getConexao();
+        }
 
         public function incluirFuncionario($funcionario){
             $sql = $this->con->prepare("insert into funcionario (nome, email, usuario, senha, cpf, dataAdmissao) values (:nome, :email, :usuario, :senha, :cpf, :dataAdmissao)");
@@ -35,14 +41,7 @@
         
             $funcionario = new Funcionario();
             
-            while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
-                $funcionario->setIdFuncionario($row->idFuncionario);
-                $funcionario->setNome($row->nome);
-                $funcionario->setEmail($row->email);
-                $funcionario->setUsuario($row->usuario);
-                $funcionario->setCpf($row->cpf);
-                $funcionario->setDataAdmissao($row->dataAdmissao);
-                $funcionario->setDataDemissao($row->dataDemissao);
+            while ($funcionario = $rs->fetch(PDO::FETCH_OBJ)) {
                 $lista[] = $funcionario;
             }
 

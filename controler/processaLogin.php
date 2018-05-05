@@ -9,7 +9,7 @@
 
     if (isset($_REQUEST["login"])){ 
         $usuario = $_REQUEST["login"];
-        $senha = $_REQUEST["senha"];
+        $senha = md5($_REQUEST["senha"]);
         echo($usuario.'-'.$senha);
         if($usuario!=null || $senha!=null) {        
             $sql = $conexao->prepare("SELECT * FROM funcionario where usuario = :usuario AND senha = :senha");
