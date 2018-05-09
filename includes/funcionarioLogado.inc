@@ -23,6 +23,7 @@
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="#">Manter alunos</a>
             <a class="p-2 text-dark" href="#">Manter equipamentos</a>
+            <a class="p-2 text-dark" href="controler/controlerFuncionario.php?opcao=1">Manter funcionários</a>
             <a class="p-2 text-dark" href="#">Manter atividades</a>
             <a class="p-2 text-dark" href="#">Minha conta</a>
         </nav>

@@ -47,4 +47,25 @@
 
             return $lista;
         }
+        
+        public function getFuncionarioByID($id) {
+            $sql = $this->con->prepare("SELECT * FROM funcionario where idFuncionario = :id");
+            $sql->bindValue(':id', $id);
+            $sql->execute();
+            
+            $funcionario = new Funcionario();
+            $funcionario = $sql->fetch(PDO::FETCH_OBJ);
+
+            return $funcionario;
+        }
+        
+        public function editarFuncionario($funcionario){
+            $sql = $this->con->prepare("UPDATE funcionario SET nome = :nome, email = :email, usuario = :usuario, cpf = :cpf WHERE idFuncionario = :idFuncionario");
+            $sql->bindValue(":idFuncionario",$funcionario->idFuncionario);
+            $sql->bindValue(":nome",$funcionario->nome);
+            $sql->bindValue(":email",$funcionario->email);
+            $sql->bindValue(":usuario",$funcionario->usuario);
+            $sql->bindValue(":cpf",$funcionario->cpf);
+            $sql->execute();
+        }
     }
