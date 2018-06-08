@@ -5,6 +5,7 @@
         public $nome;
         public $email;
         public $usuario;
+        public $senha;
         public $cpf;
         public $dataAdmissao;
         public $dataDemissao;
@@ -42,6 +43,13 @@
         }
         public function getCpf(){
             return $this->cpf;
+        }
+        
+        public function setSenha($senha) {
+            $this->cpf = $cpf;
+        }
+        public function getSenha(){
+            return $this->senha;
         }
         
         public function setDataAdmissao($dataAdmissao) {

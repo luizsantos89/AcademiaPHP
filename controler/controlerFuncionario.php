@@ -43,11 +43,32 @@
         $funcionario->senha = $_REQUEST["senha"];
         $funcionario->cpf = $_REQUEST["cpf"];
         $funcionario->dataAdmissao = $_REQUEST["dataAdmissao"];
-        $funcionario->dataDemissao = $_REQUEST["dataDemissao"];
-
+        if ($_REQUEST["operacao"] == "demissao") {
+            date_default_timezone_set('America/Sao_Paulo');
+            $funcionario->dataDemissao = date('Y-m-d H:i:s');
+        }
+        
+        
         $funcionarioDAO = new FuncionarioDAO();
 
         $funcionarioDAO->editarFuncionario($funcionario);
+
+        header("Location:controlerFuncionario.php?opcao=1");
+    }
+    
+    //Cadastrar funcionario
+    if ($opcao == 4){
+        $funcionario = new Funcionario();       
+        $funcionario->nome = $_REQUEST["nome"];
+        $funcionario->email = $_REQUEST["email"];
+        $funcionario->usuario = $_REQUEST["usuario"];
+        $funcionario->senha = md5($_REQUEST["senha"]);
+        $funcionario->cpf = $_REQUEST["cpf"];
+        date_default_timezone_set('America/Sao_Paulo');
+        $funcionario->dataAdmissao = date('Y-m-d H:i:s');
+                
+        $funcionarioDAO = new FuncionarioDAO();
+        $funcionarioDAO->incluirFuncionario($funcionario);
 
         header("Location:controlerFuncionario.php?opcao=1");
     }

@@ -60,12 +60,13 @@
         }
         
         public function editarFuncionario($funcionario){
-            $sql = $this->con->prepare("UPDATE funcionario SET nome = :nome, email = :email, usuario = :usuario, cpf = :cpf WHERE idFuncionario = :idFuncionario");
+            $sql = $this->con->prepare("UPDATE funcionario SET nome = :nome, email = :email, usuario = :usuario, cpf = :cpf, dataDemissao = :dataDemissao WHERE idFuncionario = :idFuncionario");
             $sql->bindValue(":idFuncionario",$funcionario->idFuncionario);
             $sql->bindValue(":nome",$funcionario->nome);
             $sql->bindValue(":email",$funcionario->email);
             $sql->bindValue(":usuario",$funcionario->usuario);
             $sql->bindValue(":cpf",$funcionario->cpf);
+            $sql->bindValue(":dataDemissao",$funcionario->dataDemissao);
             $sql->execute();
         }
     }

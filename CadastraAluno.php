@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Manter funcionários</title>
+    <title>Cadastrar alunos</title>
 
     <!-- Bootstrap core CSS -->
     <link href="estilos/css/bootstrap.min.css" rel="stylesheet">
@@ -26,9 +26,9 @@
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
         <img class="my-0 mr-md-auto font-weight-normal" src="imagens/logo2.png" />
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="controler/controlerAluno.php?opcao=1">Manter alunos</a>
+            <a class="p-2 text-dark" href="#">Manter alunos</a>
             <a class="p-2 text-dark" href="#">Manter equipamentos</a>
-            <a class="p-2 text-dark" href="controler/controlerFuncionario.php?opcao=1">Manter funcionários</a>
+            <a class="p-2 text-dark" href="controler/controlerAluno.php?opcao=1">Manter alunos</a>
             <a class="p-2 text-dark" href="#">Manter atividades</a>
             <a class="p-2 text-dark" href="#">Minha conta</a>
         </nav>
@@ -41,64 +41,37 @@
             echo $_SESSION["usuario"]->nome; ?>
         </h1>
         <p class="lead">
-            Manutenção de funcionários:
-        </p>
-        <p>
-            <a class="btn btn-outline-primary" href="CadastraUsuario.php">Cadastrar</a>
+            Manutenção de alunos:
         </p>
     </div>
 
     <div class="container">
-        <div class="card-deck mb-3 text-center">
-            <div>
-
+        <div class="card-deck mb-3">
             <?php
-            require 'classes/Funcionario.php';
-            
-
-            $funcionarios = $_SESSION['funcionarios'];
+            require 'classes/Aluno.php'; $alunos = $_SESSION['alunos'];
             ?>
-            <table border="1" class="table">
-                <tr>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Usuario</th>
-                    <th>CPF</th>
-                    <th>Data de Admissão</th>
-                    <th>Data de Demissão</th>
-                </tr>
-                <?php
-                    foreach ($funcionarios as $funcionario) {
-                ?>
-                    <tr>
-                        <td> 
-                            <a href="controler/controlerFuncionario.php?opcao=2&id=<?=$funcionario->idFuncionario; ?>"><?=$funcionario->nome; ?></a>  
-                        </td>
-                        <td>
-                            <?=$funcionario->email; ?>  
-                        </td>
-                        <td>
-                            <?=$funcionario->usuario; ?>  
-                        </td>
-                        <td>
-                            <?=$funcionario->cpf; ?>  
-                        </td>
-                        <td>
-                            <?= date('d/m/Y',strtotime($funcionario->dataAdmissao)); ?>  
-                        </td>
-                        <td>
-                            <?php
-                                if($funcionario->dataDemissao != null) {
-                                   echo date('d/m/Y',strtotime($funcionario->dataDemissao)); 
-                                } else {
-                                    echo '<b style="color:red">Funcionário ativo</b>';
-                                }
-                            ?> 
-                        </td>
+                
+            <h3>Cadastro de aluno: </h3>
+            <form action="controler/controlerAluno.php?opcao=4" method="post">
+                <table>
+                    <tr class="form-group">
+                        <td>Nome: </td>
+                        <td><input type="text" class="form-control" name="nome" /></td>
                     </tr>
-                    <?php } ?>
-            </table>
-            </div>
+                    <tr class="form-group">
+                        <td>E-mail: </td>
+                        <td><input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email"></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td>CPF:</td>
+                        <td><input type="text" class="form-control" name="cpf"></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2"><button type="submit" class="btn btn-primary">Submit</button></td>
+                    </tr>
+                </table>
+            </form>
         </div>
 
       <footer class="pt-4 my-md-5 pt-md-5 border-top">

@@ -12,7 +12,7 @@
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
 
-        <title>Pricing example for Bootstrap</title>
+        <title>Manter funcionário <?=$funcionario->nome?></title>
 
         <!-- Bootstrap core CSS -->
         <link href="estilos/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
         <img class="my-0 mr-md-auto font-weight-normal" src="imagens/logo2.png" />
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="#">Manter alunos</a>
+            <a class="p-2 text-dark" href="controler/controlerAluno.php?opcao=1">Manter alunos</a>
             <a class="p-2 text-dark" href="#">Manter equipamentos</a>
             <a class="p-2 text-dark" href="controler/controlerFuncionario.php?opcao=1">Manter funcionários</a>
             <a class="p-2 text-dark" href="#">Manter atividades</a>
@@ -83,6 +83,15 @@
                         <div class="invalid-feedback">
                             Forneça um CPF válido.
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="firstName">Opção:</label>
+                        <select name="operacao">
+                            <option value="edicao">Editar</option>
+                            <option value="demissao">Demissão</option>
+                        </select>
                     </div>
                 </div>
                 <input type="hidden" value="<?=$funcionario->idFuncionario?>" name="idFuncionario" />
