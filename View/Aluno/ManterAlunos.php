@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -10,83 +13,65 @@
     <title>Pricing example for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="estilos/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../estilos/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="estilos/css/pricing.css" rel="stylesheet">
+    <link href="../../estilos/css/pricing.css" rel="stylesheet">
   </head>
 
   <body>
 
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-        <img class="my-0 mr-md-auto font-weight-normal" src="imagens/logo2.png" />
+        <img class="my-0 mr-md-auto font-weight-normal" src="../../imagens/logo2.png" />
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="#">Manter alunos</a>
-            <a class="p-2 text-dark" href="#">Manter equipamentos</a>
-            <a class="p-2 text-dark" href="controler/controlerFuncionario.php?opcao=1">Manter funcionários</a>
-            <a class="p-2 text-dark" href="#">Manter atividades</a>
-            <a class="p-2 text-dark" href="#">Minha conta</a>
+            <?php include '../../includes/Menu.php'; ?>
         </nav>
       <a class="btn btn-outline-primary" href="logout.php">Logout</a>
     </div>
 
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <h1 class="display-4">Bem-vindo 
-          <?php echo $_SESSION["usuario"]->nome; ?>
-      </h1>
-      <p class="lead">
-          Através desta página você poderá:
-      </p>
+        <h1 class="display-4">Manutenção de Alunos </h1>
+        <p class="lead">
+            O que você deseja fazer?
+        </p>
     </div>
 
     <div class="container">
         <div class="card-deck mb-3 text-center">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Alunos</h4>
+                    <h4 class="my-0 font-weight-normal">Pagamentos</h4>
                 </div>
                 <div class="card-body">
-                    <img src="imagens/user-circle.svg" width="120px" height="120px" />
-                    <ul class="list-unstyled mt-3 mb-4">
-                    <li>Consultar</li>
-                    <li>Cadastrar</li>
-                    <li>Editar</li>
-                    <li>Inativar</li>
-                    <li>Emitir Relatórios</li>
-                  </ul>
-                  <button type="button" class="btn btn-lg btn-block btn-outline-primary">Gerenciar</button>
+                    <br />
+                    <img src="../../imagens/dollar-sign.svg" width="120px" height="120px" /> 
+                    <br /><br /><br /><br />
+                    <a href="../Pagamento/RegistraPagamento.php" class="btn btn-lg btn-block btn-outline-primary">Registrar</a>
+                    <a href="../Pagamento/ConsultaPagamento.php" class="btn btn-lg btn-block btn-outline-primary">Consultar</a>
                 </div>
             </div>
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Equipamentos</h4>
+                    <h4 class="my-0 font-weight-normal">Gerenciar</h4>
                 </div>
                 <div class="card-body">
-                    <img src="imagens/fit.png" width="120px" height="120px" />
-                    <ul class="list-unstyled mt-3 mb-4">
-                    <li>Consultar</li>
-                    <li>Cadastrar</li>
-                    <li>Editar</li>
-                    <li>Inativar</li>
-                    <li>Emitir Relatórios</li>
-                  </ul>
-                  <button type="button" class="btn btn-lg btn-block btn-outline-primary">Gerenciar</button>
+                    <br />
+                    <img src="../../imagens/user.svg" width="120px" height="120px" /> 
+                    <br /><br /><br /><br />
+                    <a href="CadastraAluno.php" class="btn btn-lg btn-block btn-outline-primary">Cadastrar</a>
+                    <a href="ExibirAlunos.php" class="btn btn-lg btn-block btn-outline-primary">Consultar</a>
                 </div>
             </div>
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Atividades</h4>
+                    <h4 class="my-0 font-weight-normal">Relatórios</h4>
                 </div>
                 <div class="card-body">
-                    <img src="imagens/fit2.png" width="120px" height="120px" />
-                    <ul class="list-unstyled mt-3 mb-4">
-                    <li>Consultar</li>
-                    <li>Cadastrar</li>
-                    <li>Editar</li>
-                    <li>Inativar</li>
-                    <li>Emitir Relatórios</li>
-                  </ul>
-                  <button type="button" class="btn btn-lg btn-block btn-outline-primary">Gerenciar</button>
+                    <br />
+                    <img src="../../imagens/report.png" height="120px" /> 
+                    <br /><br /><br /><br />
+                    <a href="" class="btn btn-lg btn-block btn-outline-primary">Alunos</a>
+                    <a href="" class="btn btn-lg btn-block btn-outline-primary">Pagamentos</a>
                 </div>
             </div>
         </div>

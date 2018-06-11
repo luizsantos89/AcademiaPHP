@@ -1,7 +1,6 @@
 <?php
     session_start();
 ?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,32 +10,58 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Pricing example for Bootstrap</title>
+    <title>Manter Equipamentos</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="estilos/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../estilos/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="estilos/css/pricing.css" rel="stylesheet">
+    <link href="../../estilos/css/pricing.css" rel="stylesheet">
   </head>
 
   <body>
 
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-        <img class="my-0 mr-md-auto font-weight-normal" src="imagens/logo2.png" />
-        <a class="btn btn-outline-primary" href="View/Acesso/login.php">Acessar o sistema</a>
+        <img class="my-0 mr-md-auto font-weight-normal" src="../../imagens/logo2.png" />
+        <nav class="my-2 my-md-0 mr-md-3">
+            <?php include '../../includes/Menu.php'; ?>
+        </nav>
+      <a class="btn btn-outline-primary" href="logout.php">Logout</a>
     </div>
 
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        
-        <h1>Página principal dessa caralha</h1>
-        
+        <h1 class="display-4">Atividades e Equipamentos </h1>
+        <p class="lead">
+            O que você deseja fazer?
+        </p>
     </div>
 
     <div class="container">
         <div class="card-deck mb-3 text-center">
-            
-            
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Equipamentos</h4>
+                </div>
+                <div class="card-body">
+                    <br />
+                    <img src="../../imagens/fit.png" width="120px" height="120px" /> 
+                    <br /><br /><br /><br />
+                    <a href="CadastraEquipamento.php" class="btn btn-lg btn-block btn-outline-primary">Registrar</a>
+                    <a href="ExibirEquipamentos.php" class="btn btn-lg btn-block btn-outline-primary">Consultar</a>
+                </div>
+            </div>
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Atividades</h4>
+                </div>
+                <div class="card-body">
+                    <br />
+                    <img src="../../imagens/fit2.png" width="120px" height="120px" /> 
+                    <br /><br /><br /><br />
+                    <a href="CadastraAtividade.php" class="btn btn-lg btn-block btn-outline-primary">Cadastrar</a>
+                    <a href="ExibirAtividades.php" class="btn btn-lg btn-block btn-outline-primary">Consultar</a>
+                </div>
+            </div>
         </div>
 
       <footer class="pt-4 my-md-5 pt-md-5 border-top">

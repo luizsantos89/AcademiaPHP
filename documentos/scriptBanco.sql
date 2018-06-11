@@ -1,7 +1,3 @@
-/*
-Script para criação da estrutura no MariaDB
-*/
-
 
 CREATE DATABASE academia;
 USE academia;
@@ -10,7 +6,7 @@ USE academia;
 -- Table academia.funcionario
 -- -----------------------------------------------------
 CREATE TABLE funcionario (
-  idFuncionario INT AUTO_INCREMENT,
+  idFuncionario INT NOT NULL,
   nome VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL,
   usuario VARCHAR(45) NOT NULL,
@@ -21,15 +17,15 @@ CREATE TABLE funcionario (
   PRIMARY KEY (idFuncionario),
   UNIQUE INDEX idFuncionario_UNIQUE (idFuncionario ASC),
   UNIQUE INDEX usuario_UNIQUE (usuario ASC),
-  UNIQUE INDEX cpf_UNIQUE (cpf ASC))
-ENGINE = InnoDB;
+  UNIQUE INDEX cpf_UNIQUE (cpf ASC)
+);
 
 
 -- -----------------------------------------------------
 -- Table academia.aluno
 -- -----------------------------------------------------
 CREATE TABLE aluno (
-  idAluno INT NOT NULL,
+  idAluno INT NOT NULL AUTO_INCREMENT,
   nome VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL,
   cpf VARCHAR(14) NOT NULL,
@@ -37,21 +33,8 @@ CREATE TABLE aluno (
   dataInativacao DATETIME NULL,
   funcionarioCadastro INT NOT NULL,
   funcionarioInativacao INT NULL,
-  PRIMARY KEY (idAluno),
-  UNIQUE INDEX idAluno_UNIQUE (idAluno ASC),
-  INDEX funcionarioCadastro_idx (funcionarioCadastro ASC),
-  INDEX funcionarioInativacao_idx (funcionarioInativacao ASC),
-  CONSTRAINT funcionarioCadastro
-    FOREIGN KEY (funcionarioCadastro)
-    REFERENCES academia.funcionario (idFuncionario)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT funcionarioInativacao
-    FOREIGN KEY (funcionarioInativacao)
-    REFERENCES academia.funcionario (idFuncionario)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  PRIMARY KEY (idAluno)
+);
 
 
 -- -----------------------------------------------------
@@ -64,18 +47,8 @@ CREATE TABLE pagamento (
   valorPago DOUBLE NOT NULL,
   dataPagamento DATETIME NOT NULL,
   PRIMARY KEY (idPagamento),
-  UNIQUE INDEX idPagamento_UNIQUE (idPagamento ASC),
-  CONSTRAINT idAluno
-    FOREIGN KEY (idAluno)
-    REFERENCES academia.aluno (idAluno)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT idFuncionario
-    FOREIGN KEY (idFuncionario)
-    REFERENCES academia.funcionario (idFuncionario)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  UNIQUE INDEX idPagamento_UNIQUE (idPagamento ASC)
+);
 
 
 -- -----------------------------------------------------
@@ -89,13 +62,8 @@ CREATE TABLE equipamento(
   idFuncionario INT NOT NULL,
   numSerie VARCHAR(45) NOT NULL,
   UNIQUE INDEX idEquipamento_UNIQUE (idEquipamento ASC),
-  PRIMARY KEY (idEquipamento),
-  CONSTRAINT FK_idFuncionario
-    FOREIGN KEY (idFuncionario)
-    REFERENCES academia.funcionario (idFuncionario)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  PRIMARY KEY (idEquipamento)
+);
 
 
 -- -----------------------------------------------------
@@ -108,13 +76,8 @@ CREATE TABLE atividade(
   repeticoes INT NOT NULL,
   idEquipamento INT NOT NULL,
   PRIMARY KEY (idAtividade),
-  UNIQUE INDEX idAtividade_UNIQUE (idAtividade ASC),
-  CONSTRAINT FK_idEquipamento
-    FOREIGN KEY (idEquipamento)
-    REFERENCES academia.equipamento (idEquipamento)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  UNIQUE INDEX idAtividade_UNIQUE (idAtividade ASC)
+);
 
 
 -- -----------------------------------------------------
@@ -125,19 +88,8 @@ CREATE TABLE atividadeAluno (
   idAluno INT NOT NULL,
   dataMatricula DATETIME NOT NULL,
   PRIMARY KEY (idAtividade, idAluno),
-  UNIQUE INDEX idAtividade_UNIQUE (idAtividade ASC),
-  UNIQUE INDEX idAluno_UNIQUE (idAluno ASC),
-  CONSTRAINT FK_Aluno
-    FOREIGN KEY (idAluno)
-    REFERENCES academia.aluno (idAluno)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT FK_idAtividade
-    FOREIGN KEY (idAtividade)
-    REFERENCES academia.atividade (idAtividade)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  UNIQUE INDEX idAtividade_UNIQUE (idAtividade ASC)
+);
 
 
 -- -----------------------------------------------------
@@ -154,15 +106,8 @@ CREATE TABLE avaliacaoFisica (
   imc DOUBLE NOT NULL,
   indiceGordura DOUBLE NOT NULL,
   PRIMARY KEY (idAvaliacaoFisica),
-  UNIQUE INDEX idAvaliacaoFisica_UNIQUE (idAvaliacaoFisica ASC),
-  CONSTRAINT FK_AlunoAvFisica
-    FOREIGN KEY (idAluno)
-    REFERENCES academia.aluno (idAluno),
-  CONSTRAINT FK_FuncionarioAvFisica
-    FOREIGN KEY (idFuncionario)
-    REFERENCES academia.funcionario (idFuncionario))
-ENGINE = InnoDB;
+  UNIQUE INDEX idAvaliacaoFisica_UNIQUE (idAvaliacaoFisica ASC)
+);
 
 
-INSERT INTO funcionario(nome,email,usuario,senha,cpf,dataAdmissao) VALUES('Evaldo Oliveira','evaldoliveira@gmail.com','eoliveira',md5('123456'),'012.345.678-90',NOW());
-INSERT INTO funcionario(nome,email,usuario,senha,cpf,dataAdmissao) VALUES('Luiz Santos','luiz.santos89@yahoo.com.br','luizsantos89',md5('lcaslcas'),'09695742661', NOW());
+INSERT INTO funcionario(idFuncionario,nome,email,usuario,senha,cpf) VALUES(1,'Luiz Claudio Afonso dos Santos','luiz.santos89@yahoo.com.br','luizsantos89',md5('lcaslcas'),'09695742661');

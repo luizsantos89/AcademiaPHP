@@ -9,15 +9,16 @@
                 $c = new Conexao();
                 $this->con = $c->getConexao();
         }
-
+        
         public function incluirAluno($aluno){
-            $sql = $this->con->prepare("insert into aluno (nome, email, cpf, dataMatricula) values (:nome, :email, :cpf, :dataMatricula)");
-            
+            $sql = $this->con->prepare("insert into aluno (nome, email, cpf, dataMatricula) values (:nome, :email,:cpf, :dataMatricula)");
+
             $sql->bindValue(':nome', $aluno->getNome());
             $sql->bindValue(':email', $aluno->getEmail());
             $sql->bindValue(':cpf', $aluno->getCpf());
             $sql->bindValue(':dataMatricula', $aluno->getDataMatricula());
             $sql->execute();
+
         }
         
         public function getAlunos() {

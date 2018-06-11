@@ -34,7 +34,7 @@
         }
         
         public function getFuncionarios() {
-            $query = "SELECT * FROM funcionario";
+            $query = "SELECT * FROM funcionario ORDER BY dataDemissao";
             $rs = $this->con->query($query);
 
             $lista = array();

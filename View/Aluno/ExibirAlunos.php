@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require 'includes/Funcoes.php';
+    require '../../includes/Funcoes.php';
 ?>
 
 <!doctype html>
@@ -12,27 +12,23 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Cadastrar alunos</title>
+    <title>Manter funcionários</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="estilos/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../estilos/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="estilos/css/pricing.css" rel="stylesheet">
+    <link href="../../estilos/css/pricing.css" rel="stylesheet">
   </head>
 
   <body>
 
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-        <img class="my-0 mr-md-auto font-weight-normal" src="imagens/logo2.png" />
+        <img class="my-0 mr-md-auto font-weight-normal" src="../../imagens/logo2.png" />
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="#">Manter alunos</a>
-            <a class="p-2 text-dark" href="#">Manter equipamentos</a>
-            <a class="p-2 text-dark" href="controler/controlerAluno.php?opcao=1">Manter alunos</a>
-            <a class="p-2 text-dark" href="#">Manter atividades</a>
-            <a class="p-2 text-dark" href="#">Minha conta</a>
+            <?php include("../../includes/Menu.php"); ?>
         </nav>
-      <a class="btn btn-outline-primary" href="logout.php">Logout</a>
+        <a class="btn btn-outline-primary" href="../Acesso/logout.php">Logout</a>
     </div>
 
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
@@ -43,35 +39,58 @@
         <p class="lead">
             Manutenção de alunos:
         </p>
+        <p>
+            <a class="btn btn-outline-primary" href="CadastraAluno.php">Cadastrar</a>
+        </p>
     </div>
 
     <div class="container">
-        <div class="card-deck mb-3">
-            <?php
-            require 'classes/Aluno.php'; $alunos = $_SESSION['alunos'];
-            ?>
-                
-            <h3>Cadastro de aluno: </h3>
-            <form action="controler/controlerAluno.php?opcao=4" method="post">
-                <table>
-                    <tr class="form-group">
-                        <td>Nome: </td>
-                        <td><input type="text" class="form-control" name="nome" /></td>
-                    </tr>
-                    <tr class="form-group">
-                        <td>E-mail: </td>
-                        <td><input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email"></td>
-                    </tr>
-                    <tr class="form-group">
-                        <td>CPF:</td>
-                        <td><input type="text" class="form-control" name="cpf"></td>
-                    </tr>
+        <div class="card-deck mb-3 text-center">
+            <div>
 
+            <?php
+            require '../../Model/Aluno.php';
+            
+
+            $alunos = $_SESSION['alunos'];
+            ?>
+            <table border="1" class="table">
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>CPF</th>
+                    <th>Data de Matrícula</th>
+                    <th>Data de Inativação</th>
+                </tr>
+                <?php
+                    foreach ($alunos as $aluno) {
+                ?>
                     <tr>
-                        <td colspan="2"><button type="submit" class="btn btn-primary">Submit</button></td>
+                        <td> 
+                            <a href="../../Controler/controlerAluno.php?opcao=2&id=<?=$aluno->idAluno; ?>"><?=$aluno->nome; ?></a>  
+                        </td>
+                        <td>
+                            <?=$aluno->email; ?>  
+                        </td>
+                        <td>
+                            <?=$aluno->cpf; ?>  
+                        </td>
+                        <td>
+                            <?= date('d/m/Y',strtotime($aluno->dataMatricula)); ?>  
+                        </td>
+                        <td>
+                            <?php
+                                if($aluno->dataInativacao != null) {
+                                   echo date('d/m/Y',strtotime($aluno->dataInativacao)); 
+                                } else {
+                                    echo '<b style="color:red">Aluno ativo</b>';
+                                }
+                            ?> 
+                        </td>
                     </tr>
-                </table>
-            </form>
+                    <?php } ?>
+            </table>
+            </div>
         </div>
 
       <footer class="pt-4 my-md-5 pt-md-5 border-top">
