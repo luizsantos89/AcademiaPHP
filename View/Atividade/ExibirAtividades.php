@@ -38,6 +38,7 @@
         </p>
         <p>
             <a class="btn btn-outline-primary" href="CadastraAtividade.php">Cadastrar</a>
+            <a class="btn btn-outline-primary" href="MatriculaAlunoAtividade.php">Matricular alunos</a>
         </p>
     </div>
 
@@ -48,33 +49,38 @@
             <?php
             require '../../Model/Atividade.php';
             
-
-            $atividades = $_SESSION['atividades'];
-            ?>
-            <table border="1" class="table">
-                <tr>
-                    <th>Nome:</th>
-                    <th>Equipamento utilizado:</th>
-                </tr>
-                <?php
-                    foreach ($atividades as $atividade) {
+            if(isset($_SESSION['atividades'])) {
+                $atividades = $_SESSION['atividades'];
                 ?>
+                <table border="1" class="table">
                     <tr>
-                        <td>
-                            <a href="../../Controler/controlerAtividade.php?opcao=2&id=<?=$atividade->idAtividade; ?>"><?=$atividade->nome; ?></a>  
-                        </td>
-                        <td>
-                            <?php
-                                foreach($equipamentos as $equipamento){
-                                    if ($equipamento->idEquipamento == $atividade->idEquipamento) {
-                                        echo $equipamento->nome;
-                                    }
-                                }
-                            ?>
-                        </td>
+                        <th>Nome:</th>
+                        <th>Equipamento utilizado:</th>
                     </tr>
-                    <?php } ?>
-            </table>
+                    <?php
+                        foreach ($atividades as $atividade) {
+                    ?>
+                        <tr>
+                            <td>
+                                <a href="../../Controler/controlerAtividade.php?opcao=2&id=<?=$atividade->idAtividade; ?>"><?=$atividade->nome; ?></a>  
+                            </td>
+                            <td>
+                                <?php
+                                    foreach($equipamentos as $equipamento){
+                                        if ($equipamento->idEquipamento == $atividade->idEquipamento) {
+                                            echo $equipamento->nome;
+                                        }
+                                    }
+                                ?>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                </table>
+                <?php
+            } else {
+                echo('<h3>Nenhum atividade cadastrada</h3>');
+            }
+                ?>
             </div>
         </div>
 

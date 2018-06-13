@@ -18,6 +18,15 @@
         $atividadeAluno->repeticoes = $_REQUEST["repeticoes"];
         $atividadeAluno->dataMatricula = date('Y-m-d H:i:s');
         
+        echo $atividadeAluno->idAluno;
+        echo '<br>';
+        echo $atividadeAluno->idAtividade;
+        echo '<br>';
+        echo $atividadeAluno->series;
+        echo '<br>';
+        echo $atividadeAluno->repeticoes;
+        echo '<br>';
+        echo $atividadeAluno->dataMatricula;
         
         $atividadeAlunoDAO = new AtividadeAlunoDAO();
         $atividadeAlunoDAO->matricular($atividadeAluno);
@@ -35,7 +44,7 @@
             unset($_SESSION['matriculas']);
         }
         
-        $_SESSION['matriculas'] = $lista;
+        $_SESSION['atividadeAlunos'] = $lista;
 
         header("Location:../View/Atividade/ExibirMatriculas.php");
     }

@@ -86,8 +86,6 @@ CREATE TABLE atividadeAluno (
   dataMatricula DATETIME NOT NULL,
   series INT NOT NULL,
   repeticoes INT NOT NULL,
-  PRIMARY KEY (idAtividade, idAluno),
-  UNIQUE INDEX idAtividade_UNIQUE (idAtividade ASC)
 );
 
 

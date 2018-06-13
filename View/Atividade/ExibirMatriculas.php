@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Consultar Pagamentos</title>
+    <title>Exibir Matrículas</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../estilos/css/bootstrap.min.css" rel="stylesheet">
@@ -28,10 +28,13 @@
 
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h1 class="display-4">
-            Pagamentos
+            Matrículas
         </h1>
         <p class="lead">
-            Consulta de pagamentos
+            Consulta de matrículas
+        </p>
+        <p>
+            <a class="btn btn-outline-primary" href="MatriculaAlunoAtividade.php">Matricular alunos</a>
         </p>
     </div>
 
@@ -44,8 +47,10 @@
                 session_start();
                 require '../../Model/AtividadeAluno.php';
 
-                if(isset($_SESSION['matriculas'])){
-                    $atividadesAlunos = $_SESSION['matriculas'];
+                if(isset($_SESSION['atividadeAlunos'])){
+                    $atividadeAlunos = $_SESSION['atividadeAlunos'];
+                    $alunos = $_SESSION['alunos'];
+                    $atividades = $_SESSION['atividades'];
             ?>
                 
                     <table border="1" class="table">
@@ -57,23 +62,35 @@
                             <th>Repetições:</th>
                         </tr>
                         <?php
-                            foreach ($atividadesAlunos as $matricula) {
+                            foreach ($atividadeAlunos as $atividadeAluno) {
                         ?>
                             <tr>
                                 <td>
-                                    <?=$matricula->idAluno?>
+                                    <?php
+                                        foreach($alunos as $aluno) {
+                                            if($aluno->idAluno == $atividadeAluno->idAluno) {
+                                                echo $aluno->nome;
+                                            }
+                                        }            
+                                    ?>
                                 </td>
                                 <td>
-                                    <?=$matricula->idAtividade ?>
+                                    <?php
+                                        foreach($atividades as $atividade) {
+                                            if($atividade->idAtividade == $atividadeAluno->idAtividade) {
+                                                echo $atividade->nome;
+                                            }
+                                        }  
+                                    ?>
                                 </td>
                                 <td>
-                                    <?php echo date('d/m/Y H:i:s',strtotime($matricula->dataMatricula)); ?>  
+                                    <?php echo date('d/m/Y H:i:s',strtotime($atividadeAluno->dataMatricula)); ?>  
                                 </td>
                                 <td>
-                                    <?=$matricula->series; ?>  
+                                    <?=$atividadeAluno->series; ?>  
                                 </td>
                                 <td>
-                                    <?=$matricula->repeticoes; ?>  
+                                    <?=$atividadeAluno->repeticoes; ?>  
                                 </td>
                             </tr>
                             <?php } ?>

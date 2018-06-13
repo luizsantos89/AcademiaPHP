@@ -22,14 +22,14 @@
         }
         
         public function getMatriculas() {
-            $query = "SELECT * FROM atividadealuno";
+            $query = "SELECT * FROM atividadealuno ORDER BY dataMatricula";
             $rs = $this->con->query($query);
 
             $lista = array();
         
             $atividadeAluno = new AtividadeAluno();
             
-            while ($atividade = $rs->fetch(PDO::FETCH_OBJ)) {
+            while ($atividadeAluno = $rs->fetch(PDO::FETCH_OBJ)) {
                 $lista[] = $atividadeAluno;
             }
 

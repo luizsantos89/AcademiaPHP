@@ -62,7 +62,7 @@
                         </td>
                     </tr>
                     <tr class="form-group">
-                        <td>Número de Séries:</td>
+                        <td>Número de Série:</td>
                         <td><input type="text" class="form-control" name="numSerie"></td>
                     </tr>
 
