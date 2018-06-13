@@ -6,7 +6,7 @@ USE academia;
 -- Table academia.funcionario
 -- -----------------------------------------------------
 CREATE TABLE funcionario (
-  idFuncionario INT NOT NULL,
+  idFuncionario INT NOT NULL AUTO_INCREMENT,
   nome VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL,
   usuario VARCHAR(45) NOT NULL,
@@ -41,9 +41,8 @@ CREATE TABLE aluno (
 -- Table academia.pagamento
 -- -----------------------------------------------------
 CREATE TABLE pagamento (
-  idPagamento INT NOT NULL,
+  idPagamento INT NOT NULL AUTO_INCREMENT,
   idAluno INT NOT NULL,
-  idFuncionario INT NOT NULL,
   valorPago DOUBLE NOT NULL,
   dataPagamento DATETIME NOT NULL,
   PRIMARY KEY (idPagamento),
@@ -55,7 +54,7 @@ CREATE TABLE pagamento (
 -- Table academia.equipamento
 -- -----------------------------------------------------
 CREATE TABLE equipamento(
-  idEquipamento INT NOT NULL,
+  idEquipamento INT NOT NULL AUTO_INCREMENT,
   nome VARCHAR(45) NOT NULL,
   descricao VARCHAR(200) NOT NULL,
   dataCadastro DATETIME NOT NULL,
@@ -70,10 +69,8 @@ CREATE TABLE equipamento(
 -- Table academia.atividade
 -- -----------------------------------------------------
 CREATE TABLE atividade(
-  idAtividade INT NOT NULL,
+  idAtividade INT NOT NULL AUTO_INCREMENT,
   nome VARCHAR(100) NOT NULL,
-  series INT NOT NULL,
-  repeticoes INT NOT NULL,
   idEquipamento INT NOT NULL,
   PRIMARY KEY (idAtividade),
   UNIQUE INDEX idAtividade_UNIQUE (idAtividade ASC)
@@ -87,6 +84,8 @@ CREATE TABLE atividadeAluno (
   idAtividade INT NOT NULL,
   idAluno INT NOT NULL,
   dataMatricula DATETIME NOT NULL,
+  series INT NOT NULL,
+  repeticoes INT NOT NULL,
   PRIMARY KEY (idAtividade, idAluno),
   UNIQUE INDEX idAtividade_UNIQUE (idAtividade ASC)
 );
@@ -97,7 +96,7 @@ CREATE TABLE atividadeAluno (
 -- -----------------------------------------------------
 
 CREATE TABLE avaliacaoFisica (
-  idAvaliacaoFisica INT NOT NULL,
+  idAvaliacaoFisica INT NOT NULL AUTO_INCREMENT,
   idAluno INT NOT NULL,
   idFuncionario INT NOT NULL,
   dataAvaliacao DATETIME NOT NULL,

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $aluno = $_SESSION["aluno"];
+    $equipamento = $_SESSION['equipamento'];
 ?>
 
 <!doctype html>
@@ -12,7 +12,7 @@
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
 
-        <title>Editar aluno <?=$aluno->nome?></title>
+        <title>Editar equipamento</title>
 
         <!-- Bootstrap core CSS -->
         <link href="../../estilos/css/bootstrap.min.css" rel="stylesheet">
@@ -33,21 +33,23 @@
     </div>
 
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4">Aluno
-        </h1>
+        <h1 class="display-4">Equipamentos</h1>
         <p class="lead">
-            Editar aluno:
+            Editar equipamentos:
+        </p>
+        <p>
+            <a class="btn btn-outline-primary" href="CadastraEquipamento.php">Cadastrar</a>
         </p>
     </div>
 
     <div class="container">
       <div class="col-md-12 order-md-1">
-            <h4 class="mb-3">Dados do aluno:</h4>
-            <form class="needs-validation" action="../../Controler/controlerAluno.php?opcao=3" method="post" novalidate>
+            <h4 class="mb-3">Dados do equipamento:</h4>
+            <form class="needs-validation" action="../../Controler/controlerEquipamento.php?opcao=3" method="post" novalidate>
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="firstName">Nome:</label>
-                        <input type="text" class="form-control" name="nome" value="<?php echo $aluno->nome?>" value="" required>
+                        <input type="text" class="form-control" name="nome" value="<?php echo $equipamento->nome?>" required>
                         <div class="invalid-feedback">
                             Forneça um nome válido.
                         </div>
@@ -55,8 +57,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        <label for="email">E-mail:</label>
-                        <input type="email" class="form-control" name="email" value="<?php echo $aluno->email?>" value="" required>
+                        <label for="email">Descrição:</label>
+                        <input type="email" class="form-control" name="descricao" value="<?php echo $equipamento->descricao?>" required>
                         <div class="invalid-feedback">
                             Forneça um e-mail válido.
                         </div>
@@ -64,26 +66,17 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        <label for="firstName">CPF:</label>
-                        <input type="text" class="form-control" name="cpf" value="<?php echo $aluno->cpf?>" value="" required>
+                        <label for="email">Nº Série:</label>
+                        <input type="email" class="form-control" name="numSerie" value="<?php echo $equipamento->numSerie?>" required>
                         <div class="invalid-feedback">
-                            Forneça um CPF válido.
+                            Forneça um e-mail válido.
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12 mb-3">
-                        <label for="firstName">Opção:</label>
-                        <select name="operacao">
-                            <option value="edicao">Editar</option>
-                            <option value="inativar">Inativar</option>
-                        </select>
-                    </div>
-                </div>
-                <input type="hidden" value="<?=$aluno->idAluno?>" name="idAluno" />
+                <input type="hidden" value="<?=$equipamento->idEquipamento?>" name="idEquipamento" />
                 <hr class="mb-6">
                 <button class="btn btn-outline-primary" type="submit">Alterar dados</button>
-                <a  class="btn btn-outline-primary" href="../../Controler/controlerAluno.php?opcao=1">Cancelar</a>
+                <a  class="btn btn-outline-primary" href="../../Controler/controlerEquipamento.php?opcao=1">Cancelar</a>
             </form>
         </div>
 

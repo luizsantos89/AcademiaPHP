@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Pricing example for Bootstrap</title>
+    <title>SGA :: Alunos</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../estilos/css/bootstrap.min.css" rel="stylesheet">
@@ -46,8 +46,8 @@
                     <br />
                     <img src="../../imagens/dollar-sign.svg" width="120px" height="120px" /> 
                     <br /><br /><br /><br />
-                    <a href="../Pagamento/RegistraPagamento.php" class="btn btn-lg btn-block btn-outline-primary">Registrar</a>
-                    <a href="../Pagamento/ConsultaPagamento.php" class="btn btn-lg btn-block btn-outline-primary">Consultar</a>
+                    <a href="RegistraPagamento.php" class="btn btn-lg btn-block btn-outline-primary">Registrar</a>
+                    <a href="ConsultaPagamentos.php" class="btn btn-lg btn-block btn-outline-primary">Consultar</a>
                 </div>
             </div>
             <div class="card mb-4 box-shadow">
@@ -59,9 +59,10 @@
                     <img src="../../imagens/user.svg" width="120px" height="120px" /> 
                     <br /><br /><br /><br />
                     <a href="CadastraAluno.php" class="btn btn-lg btn-block btn-outline-primary">Cadastrar</a>
-                    <a href="ExibirAlunos.php" class="btn btn-lg btn-block btn-outline-primary">Consultar</a>
+                    <a href="../../Controler/controlerAluno.php?opcao=1" class="btn btn-lg btn-block btn-outline-primary">Consultar</a>
                 </div>
             </div>
+            <!--
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
                     <h4 class="my-0 font-weight-normal">Relatórios</h4>
@@ -74,6 +75,7 @@
                     <a href="" class="btn btn-lg btn-block btn-outline-primary">Pagamentos</a>
                 </div>
             </div>
+            -->
         </div>
 
       <footer class="pt-4 my-md-5 pt-md-5 border-top">

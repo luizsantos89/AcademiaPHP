@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Cadastrar alunos</title>
+    <title>Efetuar Pagamento</title>
     
     <script type="text/javascript" src="../../estilos/js/jquery-1.2.6.pack.js"></script>
     <script type="text/javascript" src="../../estilos/js/jquery.maskedinput-1.1.4.pack.js"/></script>
@@ -41,34 +41,48 @@
     </div>
 
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4">Alunos</h1>
+        <h1 class="display-4">Pagamentos</h1>
         <p class="lead">
-            Cadastro de aluno: </p>
+            Registrar Pagamento:
+        </p>
+        
+        <h3> </h3>
     </div>
 
     <div class="container">
         <div >
-            <form action="../../Controler/controlerAluno.php?opcao=4&" method="post">
-                <table>
-                    <tr class="form-group">
-                        <td>Nome: </td>
-                        <td><input type="text" class="form-control" name="nome" /></td>
-                    </tr>
-                    <tr class="form-group">
-                        <td>E-mail: </td>
-                        <td><input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email"></td>
-                    </tr>
-                    <tr class="form-group">
-                        <td>CPF:</td>
-                        <td><input type="text" class="form-control" id="cpf" name="cpf" maxlength="14"></td>
-                    </tr>
+            <?php
+                if(isset($_SESSION['alunos'])){
+                    $alunos = $_SESSION['alunos'];
+                ?>
+                <form action="../../Controler/controlerPagamento.php?opcao=4&" method="post">
+                    <table>
+                        <tr>
+                            <td>Aluno: </td>
+                            <td>
+                                <select name="idAluno">                        
+                                    <?php
+                                        foreach ($alunos as $aluno) {
+                                    ?>
+                                        <option value="<?=$aluno->idAluno?>"><?=$aluno->nome?></option>
+                                    <?php } ?>
+                                </select>
+                            </td>
+                            <td>Valor: R$</td>
+                            <td><input type="text" class="form-control" id="valorPagamento" name="valorPagamento"></td>
+                        </tr>
 
-                    <tr>
-                        <td colspan="2"><button type="submit" class="btn btn-primary">Submit</button></td>
-                    </tr>
-                </table>
-            </form>
+                        <tr>
+                            <td colspan="2"><button type="submit" class="btn btn-primary">Registrar</button></td>
+                        </tr>
+                    </table>
+                </form>
+            <?php
+                } else {
+                    echo("<h3>Não há alunos cadastrados</h3><p><a href='CadastraAluno.php'>Cadastrar?</a></p><br>");
+                }
+                
+            ?>
         </div>
 
       <footer class="pt-4 my-md-5 pt-md-5 border-top">

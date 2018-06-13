@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Cadastrar alunos</title>
+    <title>Matrícula de alunos em atividades</title>
     
     <script type="text/javascript" src="../../estilos/js/jquery-1.2.6.pack.js"></script>
     <script type="text/javascript" src="../../estilos/js/jquery.maskedinput-1.1.4.pack.js"/></script>
@@ -42,32 +42,66 @@
 
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4">Alunos</h1>
+        <h1 class="display-4">Matrícula</h1>
         <p class="lead">
-            Cadastro de aluno: </p>
+            Matricula aluno em atividade</p>
     </div>
 
     <div class="container">
-        <div >
-            <form action="../../Controler/controlerAluno.php?opcao=4&" method="post">
+        <div class="card-deck mb-3">
+            <form action="../../Controler/controlerMatricula.php?opcao=1" method="post">
+                <?php
+                    if(isset($_SESSION['atividades']) && isset($_SESSION['alunos'])){    
+                        $atividades = $_SESSION['atividades'];
+                        $alunos = $_SESSION['alunos'];
+                ?>
                 <table>
                     <tr class="form-group">
-                        <td>Nome: </td>
-                        <td><input type="text" class="form-control" name="nome" /></td>
+                        <td>Aluno: </td>
+                        <td>
+                            <select name="idAluno" class="form-control">
+                                <?php
+                                    foreach ($alunos as $aluno) {
+                                ?>
+                                    <option value="<?=$aluno->idAluno?>"><?=$aluno->nome?></option>      
+                                <?php
+                                    }
+                                ?>
+                            </select>
+                        </td>
                     </tr>
                     <tr class="form-group">
-                        <td>E-mail: </td>
-                        <td><input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email"></td>
+                        <td>Atividade: </td>
+                        <td>
+                            <select name="idAtividade" class="form-control">
+                                <?php
+                                    foreach ($atividades as $atividade) {
+                                ?>
+                                    <option value="<?=$atividade->idAtividade?>"><?=$atividade->nome?></option> 
+                                <?php
+                                    }
+                                ?>
+                            </select>
+                        </td>
                     </tr>
                     <tr class="form-group">
-                        <td>CPF:</td>
-                        <td><input type="text" class="form-control" id="cpf" name="cpf" maxlength="14"></td>
+                        <td>Séries:</td>
+                        <td><input type="text" class="form-control" name="series"></td>
+                    </tr>
+                    <tr class="form-group">
+                        <td>Repetições:</td>
+                        <td><input type="text" class="form-control" name="repeticoes"></td>
                     </tr>
 
                     <tr>
                         <td colspan="2"><button type="submit" class="btn btn-primary">Submit</button></td>
                     </tr>
                 </table>
+                <?php
+                    } else {
+                        echo('Deve-se cadastrar as atividades e os alunos previamente.');
+                    }
+                ?>
             </form>
         </div>
 

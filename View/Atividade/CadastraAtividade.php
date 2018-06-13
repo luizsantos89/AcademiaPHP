@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Cadastrar alunos</title>
+    <title>Cadastrar atividade</title>
     
     <script type="text/javascript" src="../../estilos/js/jquery-1.2.6.pack.js"></script>
     <script type="text/javascript" src="../../estilos/js/jquery.maskedinput-1.1.4.pack.js"/></script>
@@ -35,40 +35,55 @@
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
         <img class="my-0 mr-md-auto font-weight-normal" src="../../imagens/logo2.png" />
         <nav class="my-2 my-md-0 mr-md-3">
-            <?php include '../../includes/Menu.php'; ?>
+            <?php 
+                include '../../includes/Menu.php'; 
+            ?>
         </nav>
       <a class="btn btn-outline-primary" href="logout.php">Logout</a>
     </div>
 
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4">Alunos</h1>
+        <h1 class="display-4">Atividades</h1>
         <p class="lead">
-            Cadastro de aluno: </p>
+            Cadastro de atividade: </p>
     </div>
 
     <div class="container">
         <div >
-            <form action="../../Controler/controlerAluno.php?opcao=4&" method="post">
-                <table>
-                    <tr class="form-group">
-                        <td>Nome: </td>
-                        <td><input type="text" class="form-control" name="nome" /></td>
-                    </tr>
-                    <tr class="form-group">
-                        <td>E-mail: </td>
-                        <td><input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email"></td>
-                    </tr>
-                    <tr class="form-group">
-                        <td>CPF:</td>
-                        <td><input type="text" class="form-control" id="cpf" name="cpf" maxlength="14"></td>
-                    </tr>
+            <?php
+                if(isset($_SESSION['equipamentos'])) {
+                    $equipamentos = $_SESSION['equipamentos'];
+                    ?>
+                    <form action="../../Controler/controlerAtividade.php?opcao=4" method="post">
+                        <table>
+                            <tr class="form-group">
+                                <td>Nome: </td>
+                                <td><input type="text" class="form-control" name="nome" /></td>
+                            </tr>
+                            <tr class="form-group">
+                                <td>Equipamento: </td>
+                                <td>
+                                    <select name="idEquipamento" class="form-control">
+                                        <?php
+                                            foreach($equipamentos as $equipamento) {
+                                        ?>
+                                        <option value="<?=$equipamento->idEquipamento;?>"><?=$equipamento->nome;?></option>
+                                            <?php } ?>
+                                    </select>
+                                </td>
+                            </tr>
 
-                    <tr>
-                        <td colspan="2"><button type="submit" class="btn btn-primary">Submit</button></td>
-                    </tr>
-                </table>
-            </form>
+                            <tr>
+                                <td colspan="2"><button type="submit" class="btn btn-primary">Submit</button></td>
+                            </tr>
+                        </table>
+                    </form>
+            <?php
+                } else {
+                    echo("<h3>Não há equipamentos cadastrados.</h3><br><a href='CadastraEquipamento.php'>Cadastrar?</a><br><br>");
+                }
+            ?>
         </div>
 
       <footer class="pt-4 my-md-5 pt-md-5 border-top">

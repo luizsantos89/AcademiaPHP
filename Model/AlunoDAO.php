@@ -56,4 +56,10 @@
             $sql->bindValue(":dataInativacao",$aluno->getDataInativacao());
             $sql->execute();
         }
+        
+        public function alunoPorId($idAluno) {
+            $sql = $this->con->prepare("SELECT nome FROM aluno WHERE idAluno = :idAluno");
+            $sql->bindValue(":idAluno",$idAluno);
+            $sql->execute();
+        }
     }

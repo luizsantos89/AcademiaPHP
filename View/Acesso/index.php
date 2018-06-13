@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if(!isset($_SESSION['usuario'])){
+        Header("location: ../../index.php");
+    }
 ?>
 
 <!doctype html>
@@ -11,7 +14,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Pricing example for Bootstrap</title>
+    <title>Página Principal</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../estilos/css/bootstrap.min.css" rel="stylesheet">
@@ -49,9 +52,8 @@
                     <img src="../../imagens/user-circle.svg" width="120px" height="120px" />
                     
                     <br /><br /><br /><br />
-                    <a href="RegistraPagamento.php" class="btn btn-lg btn-block btn-outline-primary">Cadastrar</a>
-                    <a href="ConsultaPagamento.php" class="btn btn-lg btn-block btn-outline-primary">Consultar</a>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary">Relatórios</button>
+                    <a href="../Aluno/CadastraAluno.php" class="btn btn-lg btn-block btn-outline-primary">Cadastrar</a>
+                    <a href="../Aluno/ExibirAlunos.php" class="btn btn-lg btn-block btn-outline-primary">Consultar</a>
                 </div>
             </div>
             <div class="card mb-4 box-shadow">
@@ -62,9 +64,8 @@
                     <img src="../../imagens/dollar-sign.svg" width="120px" height="120px" />
                     
                     <br /><br /><br /><br />
-                    <a href="RegistraPagamento.php" class="btn btn-lg btn-block btn-outline-primary">Registrar</a>
-                    <a href="ConsultaPagamento.php" class="btn btn-lg btn-block btn-outline-primary">Consultar</a>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary">Relatórios</button>
+                    <a href="../Aluno/RegistraPagamento.php" class="btn btn-lg btn-block btn-outline-primary">Registrar</a>
+                    <a href="../Aluno/ConsultaPagamentos.php" class="btn btn-lg btn-block btn-outline-primary">Consultar</a>
                 </div>
             </div>
             <div class="card mb-4 box-shadow">
@@ -75,9 +76,8 @@
                     <img src="../../imagens/fit2.png" width="120px" height="120px" />
                     
                     <br /><br /><br /><br />
-                    <a href="RegistraPagamento.php" class="btn btn-lg btn-block btn-outline-primary">Cadastrar</a>
-                    <a href="ConsultaPagamento.php" class="btn btn-lg btn-block btn-outline-primary">Consultar</a>
-                    <button type="button" class="btn btn-lg btn-block btn-outline-primary">Relatórios</button>
+                    <a href="../Atividade/ExibirEquipamentos.php" class="btn btn-lg btn-block btn-outline-primary">Equipamentos</a>
+                    <a href="../Atividade/ExibirAtividades.php" class="btn btn-lg btn-block btn-outline-primary">Atividades</a>
                 </div>
             </div>
         </div>

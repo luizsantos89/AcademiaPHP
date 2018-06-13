@@ -1,8 +1,3 @@
-<?php
-    session_start();
-    require '../../includes/Funcoes.php';
-?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Alunos cadastrados</title>
+    <title>Consultar Pagamentos</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../estilos/css/bootstrap.min.css" rel="stylesheet">
@@ -32,13 +27,11 @@
     </div>
 
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4">Alunos
+        <h1 class="display-4">
+            Pagamentos
         </h1>
         <p class="lead">
-            Alunos cadastrados:
-        </p>
-        <p>
-            <a class="btn btn-outline-primary" href="CadastraAluno.php">Cadastrar</a>
+            Consulta de pagamentos
         </p>
     </div>
 
@@ -46,48 +39,50 @@
         <div class="card-deck mb-3 text-center">
             <div>
 
-            <?php
-            require '../../Model/Aluno.php';
             
+            <?php
+                session_start();
+                require '../../Model/AtividadeAluno.php';
 
-            $alunos = $_SESSION['alunos'];
+                if(isset($_SESSION['matriculas'])){
+                    $atividadesAlunos = $_SESSION['matriculas'];
             ?>
-            <table border="1" class="table">
-                <tr>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>CPF</th>
-                    <th>Data de Matrícula</th>
-                    <th>Data de Inativação</th>
-                </tr>
-                <?php
-                    foreach ($alunos as $aluno) {
-                ?>
-                    <tr>
-                        <td> 
-                            <a href="../../Controler/controlerAluno.php?opcao=2&id=<?=$aluno->idAluno; ?>"><?=$aluno->nome; ?></a>  
-                        </td>
-                        <td>
-                            <?=$aluno->email; ?>  
-                        </td>
-                        <td>
-                            <?=$aluno->cpf; ?>  
-                        </td>
-                        <td>
-                            <?= date('d/m/Y',strtotime($aluno->dataMatricula)); ?>  
-                        </td>
-                        <td>
-                            <?php
-                                if($aluno->dataInativacao != null) {
-                                   echo date('d/m/Y',strtotime($aluno->dataInativacao)); 
-                                } else {
-                                    echo '<b style="color:red">Aluno ativo</b>';
-                                }
-                            ?> 
-                        </td>
-                    </tr>
-                    <?php } ?>
-            </table>
+                
+                    <table border="1" class="table">
+                        <tr>
+                            <th>Aluno:</th>
+                            <th>Atividade:</th>
+                            <th>Data/Hora da Matrícula:</th>
+                            <th>Séries:</th>
+                            <th>Repetições:</th>
+                        </tr>
+                        <?php
+                            foreach ($atividadesAlunos as $matricula) {
+                        ?>
+                            <tr>
+                                <td>
+                                    <?=$matricula->idAluno?>
+                                </td>
+                                <td>
+                                    <?=$matricula->idAtividade ?>
+                                </td>
+                                <td>
+                                    <?php echo date('d/m/Y H:i:s',strtotime($matricula->dataMatricula)); ?>  
+                                </td>
+                                <td>
+                                    <?=$matricula->series; ?>  
+                                </td>
+                                <td>
+                                    <?=$matricula->repeticoes; ?>  
+                                </td>
+                            </tr>
+                            <?php } ?>
+                    </table>
+            <?php
+                } else {
+                    echo('<h3>Não houve pagamentos registrados até o momento</h3>');
+                }
+            ?>
             </div>
         </div>
 
